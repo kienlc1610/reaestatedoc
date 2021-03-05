@@ -1,0 +1,20 @@
+<h2 mat-dialog-title *ngIf="!isEditMode">Create new item</h2>
+<h2 mat-dialog-title *ngElse>Edit item</h2>
+
+<mat-dialog-content>
+  <app-item-info-form [mode]="data.mode" [itemForm]="form"></app-item-info-form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-raised-button mat-dialog-close>
+    Cancel
+  </button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button
+    mat-button
+    mat-raised-button
+    color="primary"
+    (click)="handleSaveItemInfo()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

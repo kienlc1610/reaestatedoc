@@ -1,0 +1,3 @@
+export enum ERROR_CODES {
+  NOT_FOUND_ITEM = 'NOT_FOUND_ITEM',
+}

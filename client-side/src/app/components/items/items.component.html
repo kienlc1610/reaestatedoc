@@ -1,0 +1,85 @@
+<app-layout>
+  <div id="app-items" class="main-content">
+    <div
+      class="actions-section"
+      fxLayout="row"
+      fxLayoutAlign="space-between baseline"
+    >
+      <h1>Items</h1>
+      <button mat-icon-button color="primary" (click)="openItemFormDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <table mat-table [dataSource]="datasource" class="items-table">
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Created At</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdAt | date: "yyyy-mm-dd" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef>Updated At</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.updatedAt | date: "yyyy-mm-dd" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="more">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menuMoreOptions">
+            <mat-icon aria-hidden="true">more_vert</mat-icon>
+          </button>
+          <mat-menu
+            #menuMoreOptions="matMenu"
+            xPosition="before"
+            yPosition="below"
+          >
+            <button
+              mat-menu-item
+              (click)="openItemFormDialog(itemActionModes.EDIT, element.id)"
+            >
+              <span>Edit</span>
+            </button>
+
+            <button mat-menu-item (click)="deleteItem(element.id)">
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</app-layout>

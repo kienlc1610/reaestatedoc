@@ -1,0 +1,38 @@
+<form [formGroup]="itemForm">
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="16px grid"
+    fxLayoutAlign="space-between center"
+  >
+    <mat-form-field fxFlex="50" appearance="standard">
+      <mat-label>Name</mat-label>
+      <input
+        formControlName="name"
+        matInput
+        placeholder="Input Item Name"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex="50" appearance="standard">
+      <mat-label>Type</mat-label>
+      <input formControlName="type" matInput placeholder="Input Item Type" />
+    </mat-form-field>
+    <mat-form-field fxFlex="50" appearance="standard">
+      <mat-label>Category</mat-label>
+      <input
+        formControlName="category"
+        matInput
+        placeholder="Input Item Category"
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex="50" appearance="standard">
+      <mat-label>Price</mat-label>
+      <input
+        formControlName="price"
+        matInput
+        type="number"
+        placeholder="Input Item Price"
+      />
+    </mat-form-field>
+  </div>
+</form>
